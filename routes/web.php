@@ -37,3 +37,5 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 // Front View
 Route::get('/', [ClientController::class, 'home']);
 Route::get('home', [ClientController::class, 'home']);
+Route::get('shop', [ClientController::class, 'shop']);
+Route::get('product/{produk}', [ClientController::class, 'product']);

@@ -109,7 +109,7 @@
                                 <h1 class="intro-title text-white">Summer Sale</h1><!-- End .intro-title -->
                                 <div class="intro-text text-white">up to 70% off</div><!-- End .intro-text -->
                                 <div class="intro-action cross-txt">
-                                    <a href="category.html" class="btn btn-outline-white">
+                                    <a href="{{ url('shop') }}" class="btn btn-outline-white">
                                         <span>Discover More</span>
                                     </a>
                                 </div>
@@ -197,7 +197,7 @@
                             </div>
                         </div><!-- End .row -->
                         <div class="more-container text-center mt-0 mb-0">
-                            <a href="category.html" class="btn btn-outline-primary-2 btn-more">
+                            <a href="{{ url('shop') }}" class="btn btn-outline-primary-2 btn-more">
                                 <span>View more Products</span>
                             </a>
                         </div><!-- End .more-container -->

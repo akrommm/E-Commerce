@@ -28,6 +28,27 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item dropdown">
+                <a class="dropdown-toggle" href="javascript:void(0);">
+                    <span class="icon-holder">
+                        <i class="fas fa-robot"></i>
+                    </span>
+                    <span class="title">Setting Data</span>
+                    <span class="arrow">
+                        <i class="arrow-icon"></i>
+                    </span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="{{request()->is('admin/logo') ? 'active' : ''}} ">
+                        <a href="{{ url('admin/logo') }}"><i class="fas fa-images"></i> Nama & Logo</a>
+                    </li>
+                </ul>
+                <ul class="dropdown-menu">
+                    <li class="{{request()->is('admin/footer') ? 'active' : ''}} ">
+                        <a href="{{ url('admin/footer') }}"><i class="fas fa-quote-right"></i> Deskripsi Footer</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>
