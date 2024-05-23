@@ -3,13 +3,16 @@
 namespace App\Models\Admin;
 
 use App\Models\ModelAuthenticate;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends ModelAuthenticate
 {
     protected $table = 'users';
-
+    protected $primaryKey = 'id';
     protected $fillable = [
         'type',
         'nama',

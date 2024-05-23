@@ -55,7 +55,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="" class="dropdown-item d-block p-h-15 p-v-10">
+                    <a href="{{ url('admin/profile') }}" class="dropdown-item d-block p-h-15 p-v-10">
                         <div class="d-flex align-items-center justify-content-between">
                             <div>
                                 <i class="anticon opacity-04 font-size-16 anticon-user"></i>

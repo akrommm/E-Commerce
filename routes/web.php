@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProdukController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Front\ClientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('admin/dashboard');
+    return redirect('login');
 });
 
 // Login
@@ -26,7 +28,12 @@ Route::post('login', [AuthController::class, 'loginProcess']);
 Route::get('logout', [AuthController::class, 'logout']);
 
 // Admin
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('dashboard', DashboardController::class);
     Route::resource('produk', ProdukController::class);
+    Route::resource('profile', ProfileController::class);
 });
+
+// Front View
+Route::get('/', [ClientController::class, 'home']);
+Route::get('home', [ClientController::class, 'home']);
