@@ -28,7 +28,7 @@ class AuthController extends Controller
             if ($user->type == 'ADMIN') {
                 return redirect('admin/dashboard')->with('success', 'Login Berhasil');
             } else {
-                return redirect('user/dashboard')->with('success', 'Login Berhasil');
+                return redirect('home')->with('success', 'Login Berhasil');
             }
         } else {
             return view('auth.login', ['message' => 'Login Gagal, Silahkan Cek Email dan Password']);

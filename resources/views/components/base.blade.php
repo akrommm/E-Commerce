@@ -8,13 +8,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Glory - Store</title>
+    @php
+    $logo = app('App\Http\Controllers\Admin\LogoController')->getLogo();
+    @endphp
+    @if($logo && is_string($logo->url_ico))
+    <link rel="shortcut icon" href="{{ url($logo->url_ico) }}">
+    @else
+    @endif
+
+    @if($logo)
+    <title>{{$logo->name}}</title>
+    @else
+    <!-- Jika data logo kosong, Anda dapat menampilkan logo default atau pesan lain -->
+    <title></title>
+    @endif
     <meta name="keywords" content="HTML5 Template">
     <meta name="description" content="Molla - Bootstrap eCommerce Template">
     <meta name="author" content="p-themes">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ url('/') }}/images/ico.png">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ url('/') }}/front/assets/images/icons/icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url('/') }}/front/assets/images/icons/icon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ url('/') }}/front/assets/images/icons/icon.png">

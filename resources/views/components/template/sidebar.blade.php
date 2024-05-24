@@ -48,6 +48,11 @@
                         <a href="{{ url('admin/footer') }}"><i class="fas fa-quote-right"></i> Deskripsi Footer</a>
                     </li>
                 </ul>
+                <ul class="dropdown-menu">
+                    <li class="{{request()->is('admin/sosmed') ? 'active' : ''}} ">
+                        <a href="{{ url('admin/sosmed') }}"><i class="fas fa-link"></i> Link Sosmed</a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>

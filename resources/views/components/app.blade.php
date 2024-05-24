@@ -4,10 +4,20 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Glory.co | Admin</title>
+    @php
+    $logo = app('App\Http\Controllers\Admin\LogoController')->getLogo();
+    @endphp
+    @if($logo && is_string($logo->url_ico))
+    <link rel="shortcut icon" href="{{ url($logo->url_ico) }}">
+    @else
+    @endif
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ url('/') }}/images/ico.png">
+    @if($logo)
+    <title>{{$logo->name}} | ADMIN</title>
+    @else
+    <!-- Jika data logo kosong, Anda dapat menampilkan logo default atau pesan lain -->
+    <title>ADMIN</title>
+    @endif
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- page css -->

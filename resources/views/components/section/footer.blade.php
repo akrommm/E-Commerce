@@ -4,32 +4,40 @@
             <div class="row">
                 <div class="col-sm-6 col-lg-3">
                     <div class="widget widget-about">
-                        <img src="{{ url('/') }}/front/assets/images/demos/demo-18/logo.png" class="footer-logo" alt="Footer Logo" width="82" height="25">
-                        <p>Selamat Datang di Glory.co
+                        @php
+                        $logo = app('App\Http\Controllers\Admin\LogoController')->getLogo();
+                        @endphp
+                        @if($logo)
+                        <img src="{{ url($logo->url_logo) }}" alt="Logo" class="footer-logo" alt="Footer Logo" width="82" height="25">
+                        @else
+                        <!-- Jika data logo kosong, Anda dapat menampilkan logo default atau pesan lain -->
 
-                            Glory.co adalah destinasi utama bagi para pecinta fashion yang mencari gaya yang unik dan berani. Dengan semangat kreativitas dan inovasi, kami menghadirkan koleksi pakaian yang tidak hanya memenuhi kebutuhan sehari-hari Anda, tetapi juga menjadi perwakilan dari ekspresi diri Anda.</p>
+                        @endif
+                        @php
+                        $footer = app('App\Http\Controllers\Admin\FooterController')->getFooter();
+                        @endphp
+                        @if($footer)
+                        <p>{!! $footer->text !!}</p>
+                        @else
+                        <!-- Jika data logo kosong, Anda dapat menampilkan logo default atau pesan lain -->
 
-                        <div class="social-icons">
-                            <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                            <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                            <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
-                            <a href="#" class="social-icon" title="Youtube" target="_blank"><i class="icon-youtube"></i></a>
-                            <a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
-                        </div><!-- End .soial-icons -->
+                        @endif
                     </div><!-- End .widget about-widget -->
                 </div><!-- End .col-sm-6 col-lg-3 -->
 
                 <div class="col-sm-6 col-lg-3">
                     <div class="widget">
-                        <h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
-
+                        <h4 class="widget-title">Link Sosial Media</h4><!-- End .widget-title -->
+                        @php
+                        $sosmed = app('App\Http\Controllers\Admin\SosmedController')->getSosmed();
+                        @endphp
                         <ul class="widget-list">
-                            <li><a href="about.html">About Molla</a></li>
-                            <li><a href="#">How to shop on Molla</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="contact.html">Contact us</a></li>
-                            <li><a href="login.html">Log in</a></li>
-                        </ul><!-- End .widget-list -->
+                            @foreach($sosmed as $s)
+                            <li>
+                                <a href="{{ $s->link }}">{{ $s->name }}</a>
+                            </li>
+                            @endforeach
+                        </ul>
                     </div><!-- End .widget -->
                 </div><!-- End .col-sm-6 col-lg-3 -->
 
@@ -47,28 +55,20 @@
                         </ul><!-- End .widget-list -->
                     </div><!-- End .widget -->
                 </div><!-- End .col-sm-6 col-lg-3 -->
-
-                <div class="col-sm-6 col-lg-3">
-                    <div class="widget">
-                        <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
-
-                        <ul class="widget-list">
-                            <li><a href="#">Sign In</a></li>
-                            <li><a href="cart.html">View Cart</a></li>
-                            <li><a href="#">My Wishlist</a></li>
-                            <li><a href="#">Track My Order</a></li>
-                            <li><a href="#">Help</a></li>
-                        </ul><!-- End .widget-list -->
-                    </div><!-- End .widget -->
-                </div><!-- End .col-sm-6 col-lg-3 -->
             </div><!-- End .row -->
         </div><!-- End .container -->
     </div><!-- End .footer-middle -->
 
     <div class="footer-bottom">
         <div class="container">
-            <p class="footer-copyright">Copyright © Arief Muhammad Akrom. All Rights Reserved.</p><!-- End .footer-copyright -->
-
+            <p class="footer-copyright">
+                Copyright © 2024
+                @if($logo)
+                <a href="#"> {{ $logo->name }}</a>
+                @else
+                @endif
+                All Rights Reserved
+            </p><!-- End .footer-copyright -->
         </div><!-- End .container -->
     </div><!-- End .footer-bottom -->
 </footer><!-- End .footer -->

@@ -1,8 +1,18 @@
 <div class="header">
     <div class="logo logo-dark">
         <a href="">
-            <img src="{{ url('/') }}/images/logo.png" alt="Logo" width="100" height="47" class="mt-2">
-            <img class="logo-fold mt-2" src="{{ url('/') }}/images/logo.png" alt="Logo" width="72" height="51">
+            @php
+            $logo = app('App\Http\Controllers\Admin\LogoController')->getLogo();
+            @endphp
+            @if($logo)
+            <img src="{{ url($logo->url_logo) }}" alt="Logo" width="100" height="47" class="mt-2">
+            <img class="logo-fold mt-2" src="{{ url($logo->url_logo) }}" alt="Logo" width="72" height="51">
+            @else
+            <!-- Jika data logo kosong, Anda dapat menampilkan logo default atau pesan lain -->
+
+            @endif
+            <!-- <img src="{{ url('/') }}/images/logo.png" alt="Logo" width="100" height="47" class="mt-2">
+            <img class="logo-fold mt-2" src="{{ url('/') }}/images/logo.png" alt="Logo" width="72" height="51"> -->
         </a>
     </div>
     <div class="logo logo-white">
@@ -24,7 +34,11 @@
                 </a>
             </li>
             <div class="sidebar-header font-weight-bold" style="display: block;background-color: #fff;color: #2A2A2A;width: 100%;padding: 0 20px;padding-left: 20px;clear: both;z-index: 10;position: relative;text-align:center;font-size: 16px;">
-                Glory.co Admin
+                <li class="nav-item">
+                    <a href=" {{ url('home') }}">
+                        <span class="title" style="font-size: medium;">Halaman Depan</span>
+                    </a>
+                </li>
             </div>
         </ul>
         <ul class="nav-right">

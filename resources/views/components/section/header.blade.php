@@ -7,8 +7,16 @@
                     <i class="icon-bars"></i>
                 </button>
 
-                <a href="index.html" class="logo">
-                    <img src="{{ url('/') }}/front/assets/images/logo.png" alt="Molla Logo" width="105" height="25">
+                <a href="{{ url('home') }}" class="logo">
+                    @php
+                    $logo = app('App\Http\Controllers\Admin\LogoController')->getLogo();
+                    @endphp
+                    @if($logo)
+                    <img src="{{ url($logo->url_logo) }}" alt="Logo" alt="Logo" width="105" height="25">
+                    @else
+                    <!-- Jika data logo kosong, Anda dapat menampilkan logo default atau pesan lain -->
+
+                    @endif
                 </a>
 
                 <nav class="main-nav">
@@ -32,7 +40,7 @@
                     <form action="#" method="get">
                         <div class="header-search-wrapper">
                             <label for="q" class="sr-only">Search</label>
-                            <input type="search" class="form-control" name="q" id="q" placeholder="Search in..." required>
+                            <input type="search" class="form-control" name="q" id="q" placeholder="Cari Produk..." required>
                         </div><!-- End .header-search-wrapper -->
                     </form>
                 </div><!-- End .header-search -->
@@ -45,12 +53,22 @@
                 <br>
                 <nav class="main-nav ml-7">
                     <ul class="menu sf-arrows">
-                        <li class="mr-0 ml-4"><a href="{{ url('login') }} " onclick="return confirm('Apakah anda yakin akan logout ?')">
-                                @if(Auth::check())
-                                {{request()->user()->nama}}
-                                @else
-                                Silahkan Login
-                                @endif</a>
+                        <li class="mr-0 ml-4">
+                            @if(Auth::check())
+                            <div class="dropdown">
+                                <a href="#" class="dropdown-toggle" style="font-size: large; font-weight:500;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ request()->user()->nama }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" style="font-size: medium;" href="{{ url('profile') }}">Profile</a>
+                                    <a class="dropdown-item" style="font-size: medium;" href="{{ url('settings') }}">Settings</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" style="font-size: medium;" href="{{ url('logout') }}" onclick="return confirm('Apakah anda yakin akan logout ?')">Logout</a>
+                                </div>
+                            </div>
+                            @else
+                            <a href="{{ url('login') }}">Silahkan Login</a>
+                            @endif
                         </li>
                     </ul>
                 </nav><!-- End .main-nav -->

@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FooterController;
+use App\Http\Controllers\Admin\LogoController;
 use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SosmedController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Front\ClientController;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('login');
+    return redirect('home');
 });
 
 // Login
@@ -32,6 +35,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('dashboard', DashboardController::class);
     Route::resource('produk', ProdukController::class);
     Route::resource('profile', ProfileController::class);
+    Route::resource('logo', LogoController::class);
+    Route::resource('footer', FooterController::class);
+    Route::resource('sosmed', SosmedController::class);
 });
 
 // Front View
